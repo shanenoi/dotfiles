@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/shane/w2/real-estate-api/app'
+let g:netrw_dirhist_0='/home/shane/w2/real-estate-api'
+let g:netrw_dirhist_9='/home/shane/w2/real-estate-api/app'
+let g:netrw_dirhist_8='/home/shane/w2/real-estate-api'
+let g:netrw_dirhist_7='/home/shane/w2/real-estate-api/app/controllers/admin'
+let g:netrw_dirhist_6='/home/shane/w2/real-estate-api/app/controllers/web'
+let g:netrw_dirhist_5='/home/shane/w2/real-estate-api/app/controllers'
+let g:netrw_dirhist_4='/home/shane/w2/real-estate-api'
+let g:netrw_dirhist_3='/home/shane/w2/real-estate-api/app'
+let g:netrw_dirhist_2='/home/shane/w2/real-estate-api'
