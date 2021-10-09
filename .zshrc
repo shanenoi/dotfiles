@@ -1,15 +1,25 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH:/home/shane/.cargo/bin
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$HOME/Downloads/applications/gh/gh_1.14.0_linux_386/bin
+export PATH=$PATH:$HOME/Downloads/applications/dbeaver
+export PATH=$PATH:$HOME/workspace/freelancer/how_to_run
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/shane/.oh-my-zsh"
+export HISTTIMEFORMAT="%s "
+
+ZSH_THEME="afowler"
+# ZSH_THEME="amuse"
+# ZSH_THEME="robbyrussell"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,9 +81,10 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby)
+plugins=(git rails ruby golang archlinux heroku yarn npm)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.cargo/env
 
 # User configuration
 
@@ -102,10 +113,15 @@ source $ZSH/oh-my-zsh.sh
 set -o vi
 # fm6000.pl -r 
 colorscript -r
-rvm use 2.7.2
+rvm use 2.7.2 > /dev/null
 
 alias ls=exa
-alias _cat=bat
+alias cat=bat
+alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
 bash /home/shane/script/autorun.sh
 DISABLE_MAGIC_FUNCTIONS=true
 export DISABLE_MAGIC_FUNCTIONS=true
+toilet -f smblock N19DCCN027
+face=$(python -c 'import sys; print(""[int(sys.argv[1], 16) % 10], end="")' `date +"%S" | md5sum | sed 's/[ -]//g'`)
+PROMPT="[$face] $PROMPT"
