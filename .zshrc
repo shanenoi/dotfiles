@@ -8,6 +8,10 @@ export PATH=$PATH:$HOME/Downloads/applications/gh/gh_1.14.0_linux_386/bin
 export PATH=$PATH:$HOME/Downloads/applications/dbeaver
 export PATH=$PATH:$HOME/workspace/freelancer/how_to_run
 
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export GT_IM_MODULE=ibus 
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/shane/.oh-my-zsh"
 export HISTTIMEFORMAT="%s "
@@ -112,16 +116,19 @@ source $HOME/.cargo/env
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 set -o vi
 # fm6000.pl -r 
-colorscript -r
-rvm use 2.7.2 > /dev/null
+
+{
+	rvm use 2.7.2
+} &> /dev/null
 
 alias ls=exa
 alias cat=bat
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
 bash /home/shane/script/autorun.sh
+colorscript -r
 DISABLE_MAGIC_FUNCTIONS=true
 export DISABLE_MAGIC_FUNCTIONS=true
-toilet -f smblock N19DCCN027
+# toilet -f smblock N19DCCN027
 face=$(python -c 'import sys; print(""[int(sys.argv[1], 16) % 10], end="")' `date +"%S" | md5sum | sed 's/[ -]//g'`)
 PROMPT="[$face] $PROMPT"
