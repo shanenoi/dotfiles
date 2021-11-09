@@ -11,9 +11,9 @@ call plug#end()
 
 " colorscheme industry
 " colorscheme murphy
-" colorscheme gruvbox8_hard
+colorscheme gruvbox8_hard
 " colorscheme pablo
-colorscheme molokai
+" colorscheme molokai
 " execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
 set background=dark
 
@@ -31,6 +31,8 @@ set autowrite
 set cursorline
 set fileformat=unix
 set colorcolumn=1000
+set guifont=Unifont:h12
+
 " set mouse=a
 " set guicursor=n-v-c:block-Cursor
 " set guicursor+=i:ver100-iCursor
@@ -48,7 +50,7 @@ let g:netrw_winsize = 20
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
-syntax on
+syntax off
 
 autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp
 			\ source ~/.config/nvim/ftplugin/c.vim
