@@ -6,22 +6,31 @@ Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'dagwieers/asciidoc-vim'
 Plug 'tomasr/molokai'
-Plug 'othree/html5.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 call plug#end()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true, disable = {} },
+  indent = { enable = true },
+  ensure_installed = {
+    "go", "python", "javascript",
+    "json", "yaml", "c", "html",
+    "java", "css", "scss"
+  },
+}
+EOF
 
 " colorscheme industry
 " colorscheme murphy
-colorscheme gruvbox8_hard
 " colorscheme pablo
 " colorscheme molokai
 " execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
+colorscheme gruvbox8_hard
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set background=dark
-
-" hi! TermCursor guifg=black guibg=white gui=NONE cterm=NONE
-" hi! TermCursorNC guifg=black guibg=white gui=NONE cterm=NONE
-" highlight Cursor guifg=black guibg=white
-" highlight iCursor guifg=black guibg=white
-
 set clipboard+=unnamedplus
 set tags+=/tmp/tags
 set relativenumber
@@ -32,12 +41,6 @@ set cursorline
 set fileformat=unix
 set colorcolumn=1000
 set guifont=Unifont:h12
-
-" set mouse=a
-" set guicursor=n-v-c:block-Cursor
-" set guicursor+=i:ver100-iCursor
-" set guicursor+=n-v-c:blinkon0
-" set guicursor+=i:blinkwait10
 
 let @f = ':e /tk€kbmp/indexggVGd:w:r!find€kb€kb€kbfi€kb€kb€kbfind . -type f :w:w:w:w'
 let @w = ':call FloatWindow()'
@@ -50,7 +53,7 @@ let g:netrw_winsize = 20
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
-syntax off
+syntax on
 
 autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp
 			\ source ~/.config/nvim/ftplugin/c.vim
@@ -104,3 +107,4 @@ function! OpenFloatTerm()
   " Hook up TermClose event to close both terminal and border windows
   autocmd TermClose * ++once :q | call nvim_win_close(s:border_win, v:true)
 endfunction
+
