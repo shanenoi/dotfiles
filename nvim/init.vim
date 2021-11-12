@@ -20,7 +20,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
+execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
 colorscheme gruvbox8_hard
 set foldmethod=indent
 set foldexpr=nvim_treesitter#foldexpr()
