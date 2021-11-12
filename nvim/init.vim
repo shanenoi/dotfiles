@@ -20,10 +20,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" colorscheme industry
-" colorscheme murphy
-" colorscheme pablo
-" colorscheme molokai
 " execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
 colorscheme gruvbox8_hard
 set foldmethod=indent
