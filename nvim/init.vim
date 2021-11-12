@@ -2,9 +2,7 @@ call plug#begin()
 Plug 'wakatime/vim-wakatime'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'dagwieers/asciidoc-vim'
 Plug 'tomasr/molokai'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
@@ -17,7 +15,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "go", "python", "javascript",
     "json", "yaml", "c", "html",
-    "java", "css", "scss"
+    "java", "css", "scss", "vim"
   },
 }
 EOF
@@ -28,7 +26,7 @@ EOF
 " colorscheme molokai
 " execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
 colorscheme gruvbox8_hard
-set foldmethod=expr
+set foldmethod=indent
 set foldexpr=nvim_treesitter#foldexpr()
 set background=dark
 set clipboard+=unnamedplus
