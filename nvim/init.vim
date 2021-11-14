@@ -69,6 +69,7 @@ function! GetTags()
 	exe 'set tags+=' . b:dir
 endfunction
 
+
 function! OpenFloatTerm()
 	let height = float2nr((&lines - 2) / 1.5)
 	let row = float2nr((&lines - height) / 2)
@@ -101,4 +102,3 @@ function! OpenFloatTerm()
 	" Hook up TermClose event to close both terminal and border windows
 	autocmd TermClose * ++once :q | call nvim_win_close(s:border_win, v:true)
 endfunction
-
