@@ -6,7 +6,11 @@ Plug 'lifepillar/vim-gruvbox8'
 Plug 'tomasr/molokai'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'mhinz/vim-startify'
 call plug#end()
+
+let g:startify_custom_header =
+			\ 'startify#center(startify#fortune#cowsay())'
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
