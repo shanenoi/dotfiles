@@ -6,11 +6,8 @@ Plug 'lifepillar/vim-gruvbox8'
 Plug 'tomasr/molokai'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-" Plug 'mhinz/vim-startify'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
-
-" let g:startify_custom_header =
-" 			\ 'startify#center(startify#fortune#cowsay())'
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -19,7 +16,8 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "go", "python", "javascript",
     "json", "yaml", "c", "html",
-    "java", "css", "scss", "vim"
+    "java", "css", "scss", "vim",
+    "rust"
   },
 }
 EOF
@@ -38,9 +36,9 @@ set autowrite
 set cursorline
 set fileformat=unix
 set colorcolumn=1000
-set guifont=Unifont:h12
+set guifont=Unifont:h17
 
-let @f = ':e /tk€kbmp/indexggVGd:w:r!find€kb€kb€kbfi€kb€kb€kbfind . -type f :w:w:w:w'
+let @f = ':e /tk€kbmp/indexggVGd:w:r!find€kb€kb€kbfi€kb€kb€kbfind . -not -path "./\.git/*"  -not -path "./vendor/*" -type f :w:w:w:w'
 let @w = ':call FloatWindow()'
 let @l = ':Lex:e.'
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
@@ -63,6 +61,8 @@ autocmd BufNewFile,BufRead *.js
 			\ source ~/.config/nvim/ftplugin/javascript.vim
 autocmd BufNewFile,BufRead *.py 
 			\ source ~/.config/nvim/ftplugin/python.vim
+autocmd BufNewFile,BufRead *.rb 
+			\ source ~/.config/nvim/ftplugin/ruby.vim
 
 hi CursorLine cterm=underline term=underline ctermbg=NONE guibg=NONE
 hi ColorColumn ctermbg=magenta
