@@ -38,8 +38,8 @@ set fileformat=unix
 set colorcolumn=1000
 set guifont=Unifont:h17
 
-let @f = ':e /tk€kbmp/indexggVGd:w:r!find€kb€kb€kbfi€kb€kb€kbfind . -not -path "./\.git/*"  -not -path "./vendor/*" -type f :w:w:w:w'
-let @w = ':call FloatWindow()'
+let @f = ':e /tmp/indexggVGd:w:r!find . -not -path "./\.git/*" -not -path "./vendor/*" -not -path "./node_modules/*" -type f :w'
+let @w = ':call OpenFloatTerm()'
 let @l = ':Lex:e.'
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
 let g:airline_theme='one'
