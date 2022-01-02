@@ -2,33 +2,21 @@ call plug#begin()
 Plug 'wakatime/vim-wakatime'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'lifepillar/vim-gruvbox8'
 Plug 'tomasr/molokai'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-neorg/neorg' | Plug 'nvim-lua/plenary.nvim'
+Plug 'tomlion/vim-solidity'
 call plug#end()
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = { enable = true, disable = {} },
-  indent = { enable = true },
-  ensure_installed = {
-    "go", "python", "javascript",
-    "json", "yaml", "c", "html",
-    "java", "css", "scss", "vim",
-    "rust"
-  },
-}
-EOF
-
 execute 'set background=' . (strftime('%H') < 16 ? 'dark' : 'light')
-colorscheme elflord
+colorscheme delek
 set foldmethod=indent
 set foldexpr=nvim_treesitter#foldexpr()
 set background=dark
 set clipboard+=unnamedplus
-set tags+=/tmp/tags
+set tags+=/var/tmp/tags
 set relativenumber
 set number
 set autoread
@@ -36,9 +24,9 @@ set autowrite
 set cursorline
 set fileformat=unix
 set colorcolumn=1000
-set guifont=Unifont:h17
+" set guifont=Unifont:h15
 
-let @f = ':e /tmp/indexggVGd:w:r!find . -not -path "./\.git/*" -not -path "./vendor/*" -not -path "./node_modules/*" -type f :w'
+let @f = ':e /var/tmp/indexggVGd:w:r!find . -not -path "./\.git/*" -not -path "./vendor/*" -not -path "./node_modules/*" -type f :w'
 let @w = ':call OpenFloatTerm()'
 let @l = ':Lex:e.'
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
@@ -68,7 +56,7 @@ hi CursorLine cterm=underline term=underline ctermbg=NONE guibg=NONE
 hi ColorColumn ctermbg=magenta
 
 function! GetTags()
-	let b:dir = "/tmp/" . substitute(getcwd(), '^.*/', '', '') . ".tags"
+	let b:dir = "/var/tmp/" . substitute(getcwd(), '^.*/', '', '') . ".tags"
 	call system('ctags -R -f ' . b:dir . ' "`realpath .`"')
 	exe 'set tags+=' . b:dir
 endfunction
@@ -106,3 +94,42 @@ function! OpenFloatTerm()
 	" Hook up TermClose event to close both terminal and border windows
 	autocmd TermClose * ++once :q | call nvim_win_close(s:border_win, v:true)
 endfunction
+
+lua <<EOF
+	require'nvim-treesitter.configs'.setup {
+	  highlight = { enable = true, disable = {} },
+	  indent = { enable = true },
+	  ensure_installed = {
+	    "go", "python", "javascript",
+	    "json", "yaml", "c", "html",
+	    "java", "css", "scss", "vim",
+	    "rust", "norg"
+	  },
+	}
+	local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+
+	parser_configs.norg = {
+	    install_info = {
+		url = "https://github.com/nvim-neorg/tree-sitter-norg",
+		files = { "src/parser.c", "src/scanner.cc" },
+		branch = "main"
+	    },
+	}
+EOF
+
+lua << EOF
+    require('neorg').setup {
+        -- Tell Neorg what modules to load
+        load = {
+            ["core.defaults"] = {}, -- Load all the default modules
+            ["core.norg.concealer"] = {}, -- Allows for use of icons
+            ["core.norg.dirman"] = { -- Manage your directories with Neorg
+                config = {
+                    workspaces = {
+                        my_workspace = "~/neorg"
+                    }
+                }
+            }
+        },
+    }
+EOF
