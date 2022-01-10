@@ -103,7 +103,7 @@ lua <<EOF
 	    "go", "python", "javascript",
 	    "json", "yaml", "c", "html",
 	    "java", "css", "scss", "vim",
-	    "rust", "norg"
+	    "rust"
 	  },
 	}
 	local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
@@ -115,21 +115,4 @@ lua <<EOF
 		branch = "main"
 	    },
 	}
-EOF
-
-lua << EOF
-    require('neorg').setup {
-        -- Tell Neorg what modules to load
-        load = {
-            ["core.defaults"] = {}, -- Load all the default modules
-            ["core.norg.concealer"] = {}, -- Allows for use of icons
-            ["core.norg.dirman"] = { -- Manage your directories with Neorg
-                config = {
-                    workspaces = {
-                        my_workspace = "~/neorg"
-                    }
-                }
-            }
-        },
-    }
 EOF

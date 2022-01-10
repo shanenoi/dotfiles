@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$(go env GOPATH)
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.cargo/bin
@@ -13,7 +14,7 @@ export XMODIFIERS=@im=ibus
 export GT_IM_MODULE=ibus 
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/shane/.oh-my-zsh"
+export ZSH="/home/`whoami`/.oh-my-zsh"
 export HISTTIMEFORMAT="%s "
 
 ZSH_THEME="afowler"
@@ -125,10 +126,9 @@ alias ls=exa
 alias cat=bat
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
-bash /home/shane/script/autorun.sh
-colorscript -r
+# bash /home/`whoami`/script/autorun.sh
+# colorscript -r
 DISABLE_MAGIC_FUNCTIONS=true
 export DISABLE_MAGIC_FUNCTIONS=true
-# toilet -f smblock N19DCCN027
 face=$(python -c 'import sys; print(""[int(sys.argv[1], 16) % 10], end="")' `date +"%S" | md5sum | sed 's/[ -]//g'`)
 PROMPT="[$face] $PROMPT"
