@@ -27,10 +27,15 @@ set -o vi
 } &> /dev/null
 
 alias ls=exa
+alias e=exit
 alias cat=bat
-alias docker='sudo docker'
-alias docker-compose='sudo docker-compose'
+alias noti='notify-send -i emblem-default "Done"'
+# alias docker='sudo docker'
+# alias docker-compose='sudo docker-compose'
 DISABLE_MAGIC_FUNCTIONS=true
 export DISABLE_MAGIC_FUNCTIONS=true
 face=$(python -c 'import sys; print(""[int(sys.argv[1], 16) % 10], end="")' `date +"%S" | md5sum | sed 's/[ -]//g'`)
 PROMPT="[$face] $PROMPT"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
